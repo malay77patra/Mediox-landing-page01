@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mediox</title>
+    <link rel="shortcut icon" href="/images/mediox.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        :root {
+            --body: #FFFFFF;
+            --font: rgb(18, 18, 18);
+            --font-h: #050505;
+            --section: #F6F5F4;
+            font-family: "Inter", sans-serif;
+            --section-h: #F1EFEE;
+            --border: rgba(0, 0, 0, .1);
+            --icon: rgba(0, 0, 0, 0.4);
+            --icon-h: rgba(0, 0, 0, .6);
+            --link: rgb(10, 133, 209);
+            --link-h: #076097;
+            --blue-btn: rgb(0, 129, 242);
+            --blue-btn-h: #045ac4;
+            --black-btn: rgb(18, 18, 18);
+            --black-btn-h: #333;
+            --n-btn: transparent;
+            --n-btn-h: #ECEBEA;
+            --n-btn-a: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-family);
+            background-color: var(--body);
+            color: var(--font);
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 450;
+            font-style: normal;
+            font-variation-settings:
+                "slnt" 0;
+        }
+
+        a {
+            cursor: pointer;
+            text-decoration-line: none;
+            color: var(--link);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--link-h);
+        }
+
+        nav {
+            padding: 15px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            gap: 10px;
+            position: fixed;
+            width: 100%;
+            box-sizing: border-box;
+            top: 0;
+            left: 0;
+            background-color: var(--body);
+            z-index: 1;
+        }
+
+        .business {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            gap: 8px;
+        }
+
+        .navbar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        nav::after {
+            content: '';
+            width: 96%;
+            height: 1px;
+            background-color: var(--border);
+            position: absolute;
+            left: 2%;
+            bottom: 0;
+        }
+
+        .start-btn {
+            color: #FFF;
+            padding: 8px 11px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: var(--black-btn);
+        }
+
+        .start-btn:hover {
+            color: #FFF;
+            text-decoration: none;
+            background-color: var(--black-btn-h);
+        }
+
+        .next-step {
+            margin-top: 22px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .next-step .start-btn {
+            background-color: var(--blue-btn);
+        }
+
+        .next-step .start-btn:hover {
+            background-color: var(--blue-btn-h);
+        }
+
+
+        main {
+            padding-top: 100px;
+        }
+
+        .icon {
+            height: 24px;
+            width: 24px;
+        }
+
+        .small-icon {
+            height: 1rem;
+            width: 1rem;
+        }
+
+        .hero-txt {
+            font-size: 61px;
+            text-align: center;
+            padding: 0 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--font-h);
+        }
+
+        .hero-txt>div {
+            display: inline-block;
+        }
+
+        .hero-about {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 0 20px;
+            text-align: center;
+            max-width: 500px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero-box {
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero {
+            height: 400px;
+        }
+
+        #quote {
+            text-align: center;
+            font-size: 30px;
+            font-family: "Bad Script", cursive;
+            font-weight: 400;
+            font-style: normal;
+            position: relative;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 0;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        #quote::after {
+            content: '- ' attr(author);
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translate(-50%, 100%);
+            font-size: 20px;
+            font-family: serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .end-img {
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .end-img::after {
+            content: '';
+            position: absolute;
+            width: 96%;
+            left: 2%;
+            bottom: -20px;
+            height: 1px;
+            background-color: var(--border);
+        }
+
+        .ending-txt {
+            text-align: center;
+        }
+
+        .ending-txt h2 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .uses {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            max-width: 750px;
+        }
+
+        .uses>div {
+            width: 30%;
+            background-color: var(--section);
+            padding: 24px;
+            box-sizing: border-box;
+            border-radius: 12px;
+        }
+
+        .uses .count {
+            color: var(--link);
+            font-size: 52px;
+            font-weight: bold;
+        }
+
+        .uses .count::after {
+            content: '+';
+        }
+
+        .uses .desc {
+            font-weight: 600;
+        }
+
+        .users {
+            margin-top: 100px;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .size-wrapper {
+            max-width: 650px;
+            display: block;
+            margin: 0 auto;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .cut-man {
+            position: relative;
+        }
+
+        .cut-line {
+            position: absolute;
+            height: 40px;
+            bottom: 0;
+            right: 0;
+            transform: translate(-80px, 100%);
+            z-index: 2;
+        }
+
+        .cut-tools {
+            position: absolute;
+            height: 40px;
+            width: 100vw;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+            transform: translate(-80px, 100%);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 100px;
+            gap: 10px;
+        }
+
+        .cut-tools img {
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background-color: var(--section);
+        }
+
+        .info {
+            text-align: center;
+            padding: 25px 0;
+            font-weight: 500;
+        }
+
+        .screen {
+            margin-top: 150px;
+            margin-bottom: 100px;
+            height: 400px;
+            background-color: var(--section);
+            position: relative;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .screen .demo-header {
+            position: absolute;
+            padding-left: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            top: 12px;
+            left: 0;
+            transform: translate(0, -100%);
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .showing-man {
+            height: 100px;
+        }
+
+        #editorjs {
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        footer {
+            padding: 60px 10px;
+            max-width: 650px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .icon-s {
+            display: inline-flex;
+            height: 30px;
+            width: 30px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--icon);
+        }
+        .icon-s:hover {
+            background-color: var(--n-btn-h);
+        }
+        .icon-s:active {
+            background-color: var(--n-btn-a);
+        }
+        .icon-s svg {
+            height: 18px;
+        }
+
+        .insta:hover {
+            color: rgb(181, 0, 226);
+        }
+        .lin:hover {
+            color: rgb(105, 50, 255);
+        }
+        .tweet:hover {
+            color: rgb(105, 50, 255);
+        }
+        .fbook:hover {
+            color: rgb(48, 50, 173);
+        }
+        .ytube:hover {
+            color: rgb(255, 84, 84);
+        }
+        .social-media {
+            margin: 10px 0;
+        }
+
+
+        /* media quiries */
+        /* For Tablet View */
+        @media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+        /* For Mobile Portrait View */
+        @media screen and (max-width: 767px) and (orientation: portrait) {
+            main {
+                padding-top: 50px;
+            }
+
+            .hero-txt {
+                margin-bottom: 10px;
+            }
+
+            .hero-about {
+                font-size: 20px;
+            }
+
+            .business span,
+            .navbar a:nth-child(1) {
+                display: none !important;
+            }
+
+            .hero-txt {
+                font-size: 45px;
+            }
+
+            #quote {
+                font-size: 24px;
+            }
+
+            #quote::after {
+                font-size: 16px;
+            }
+
+            .ending-txt h2 {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .uses {
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .uses>div {
+                padding: 4vw;
+                width: auto;
+            }
+
+            .uses .count {
+                font-size: 30px;
+            }
+
+            .uses .desc {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="business">
+            <img src="/images/mediox.svg" height="34" width="34" />
+            <span>Mediox</span>
+        </div>
+        <div class="navbar">
+            <a style="display: flex; align-items: center; justify-content: center; gap: 5px; font-weight: 600;"
+                href="/pages/home.html">Keep Reading
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="small-icon">
+                    <defs fill="currentColor"></defs>
+                    <path d="m56.24,32l-24,24-4.24-4.24,16.76-16.76H8v-6h36.76L28,12.24l4.24-4.24,24,24Z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>
+            <a class="start-btn" href="/pages/login.html">Get Mediox free</a>
+        </div>
+    </nav>
+    <main>
+        <h1 class="hero-txt">
+            <div data-aos="fade-up">Think, </div>
+            <div data-aos="fade-up" data-aos-delay="50">Write, </div>
+            <div data-aos="fade-up" data-aos-delay="100">Share</div>
+        </h1>
+        <p class="hero-about" data-aos="fade-up" data-aos-delay="200">From your thoughts to everyone's screen with
+            Mediox</p>
+        <div class="next-step" data-aos="fade-up" data-aos-delay="300">
+            <a class="start-btn" href="/pages/login.html">Get Mediox free</a>
+            <a style="display: flex; align-items: center; justify-content: center; gap: 5px; font-weight: 600;"
+                href="/pages/home.html">Keep Reading
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="small-icon">
+                    <defs fill="currentColor"></defs>
+                    <path d="m56.24,32l-24,24-4.24-4.24,16.76-16.76H8v-6h36.76L28,12.24l4.24-4.24,24,24Z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-box">
+            <img data-aos="fade-up-right" data-aos-delay="300" src="/images/man.svg" class="hero" />
+        </div>
+        <h2 id="quote" author="Dr. A. P. J. Abdul Kalam">“Either write something worth reading or do something worth
+            writing”</h2>
+        <div class="size-wrapper">
+            <img class="users"
+                src="https://www.notion.so/cdn-cgi/image/format=webp,width=3840/front-static/pages/home/faces.png" />
+        </div>
+        <div class="uses">
+            <div>
+                <div class="count">999</div>
+                <div class="desc">active users</div>
+            </div>
+            <div>
+                <div class="count">999</div>
+                <div class="desc">post shares</div>
+            </div>
+            <div>
+                <div class="count">999</div>
+                <div class="desc">daily reads</div>
+            </div>
+        </div>
+        <div class="size-wrapper">
+            <p class="info">
+                Mediox is where thousands of writers are already sharing their ideas and growing their audience. Join
+                our thriving community and see why so many choose Mediox for their article publishing needs. Give it a
+                try today!</p>
+        </div>
+        <div class="size-wrapper">
+            <div style="display: flex; align-items: center; justify-content: center; width: 100%; margin: 50px 0;">
+                <h2 style="text-align: center;">Publish on Mediox<br /><span
+                        style="text-decoration: line-through; text-decoration-color: #eb6565;">Cut costs</span></h2>
+                <div class="cut-man">
+                    <img width="200px"
+                        src="https://www.notion.so/cdn-cgi/image/format=webp,width=640/front-static/pages/home/giant-pencil-illustration.png" />
+                    <img class="cut-line" src="/images/line.svg" />
+                    <div class="cut-tools">
+                        <img src="/images/code.svg" />
+                        <img src="/images/server.svg" />
+                        <img src="/images/domain.svg" />
+                        <img src="/images/seo.svg" />
+                    </div>
+                </div>
+            </div>
+            <p class="info">Launch your blog instantly with Mediox, no need to worry about domain registration, hosting,
+                coding, or SEO expenses.</p>
+        </div>
+        <div class="size-wrapper">
+            <div class="screen">
+                <div class="demo-header">
+                    <img class="showing-man"
+                        src="https://www.notion.so/cdn-cgi/image/format=auto,width=640,quality=100/front-static/shared/illustrations/blocks/topPeekI.png" />
+                    <h3>Let's give a try</h3>
+                </div>
+                <div id="editorjs"></div>
+            </div>
+        </div>
+        <div class="ending-txt">
+            <h2>Start Writing for free</h2>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <a class="start-btn" href="/pages/login.html">Get Mediox free</a>
+                <a style="display: flex; align-items: center; justify-content: center; gap: 5px; font-weight: 600;"
+                    href="/pages/home.html">Keep Reading
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="small-icon">
+                        <defs fill="currentColor"></defs>
+                        <path d="m56.24,32l-24,24-4.24-4.24,16.76-16.76H8v-6h36.76L28,12.24l4.24-4.24,24,24Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="end-img">
+            <img style="width: 100%; max-width: 650px; margin: 50px auto; display: block;"
+                src="https://www.notion.so/cdn-cgi/image/format=webp,width=750/front-static/pages/home/notion-parade.png" />
+        </div>
+    </main>
+    <footer>
+        <div style="display: flex;">
+            <img src="/images/mediox.svg" height="32px" /><span style="font-weight: bold;">Mediox</span>
+        </div>
+        <div class="social-media">
+            <a class="icon-s insta">
+                <svg viewBox="0 0 18 18" style="fill:currentColor;">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M9 1.621c2.405 0 2.689.011 3.635.053.879.039 1.354.186 1.67.309.418.162.721.359 1.034.671.316.316.51.615.675 1.034.123.316.271.795.309 1.67.042.949.053 1.234.053 3.635s-.011 2.689-.053 3.635c-.039.879-.186 1.354-.309 1.67a2.802 2.802 0 01-.671 1.034c-.316.316-.615.51-1.034.675-.316.123-.795.271-1.67.309-.949.042-1.234.053-3.635.053s-2.689-.011-3.635-.053c-.879-.039-1.354-.186-1.67-.309a2.802 2.802 0 01-1.034-.671 2.815 2.815 0 01-.675-1.034c-.123-.316-.271-.795-.309-1.67-.042-.949-.053-1.234-.053-3.635s.011-2.689.053-3.635c.039-.879.186-1.354.309-1.67.162-.418.359-.721.671-1.034.316-.316.615-.51 1.034-.675.316-.123.795-.271 1.67-.309.946-.042 1.23-.053 3.635-.053zM9 0C6.557 0 6.251.011 5.291.053 4.335.095 3.677.25 3.108.471a4.389 4.389 0 00-1.596 1.041A4.404 4.404 0 00.471 3.105C.25 3.678.095 4.332.053 5.288.011 6.251 0 6.557 0 9c0 2.443.011 2.749.053 3.709.042.956.197 1.614.418 2.183a4.389 4.389 0 001.041 1.596 4.392 4.392 0 001.593 1.037c.573.221 1.227.376 2.183.418.96.042 1.266.053 3.709.053s2.749-.011 3.709-.053c.956-.042 1.614-.197 2.183-.418a4.413 4.413 0 001.593-1.037c.5-.499.809-1.002 1.037-1.593.221-.573.376-1.227.418-2.183.042-.96.053-1.266.053-3.709s-.011-2.749-.053-3.709c-.042-.956-.197-1.614-.418-2.183a4.21 4.21 0 00-1.03-1.6A4.392 4.392 0 0014.896.474c-.573-.221-1.227-.376-2.183-.418C11.75.01 11.444 0 9 0zm0 4.377A4.625 4.625 0 004.377 9 4.625 4.625 0 009 13.623 4.625 4.625 0 0013.623 9 4.625 4.625 0 009 4.377zm0 7.622A3 3 0 119 6 3 3 0 019 12zm4.806-6.726a1.079 1.079 0 100-2.158 1.079 1.079 0 000 2.158z">
+                    </path>
+                </svg>
+            </a>
+            <a class="icon-s tweet">
+                <svg viewBox="0 0 22 18" style="fill:currentColor;">
+                    <path
+                        d="m22 2.12799c-.8083.36413-1.6798.60642-2.5899.71441.9321-.56211 1.6455-1.45374 1.9851-2.514271-.8716.51919-1.8393.899931-2.8648 1.103451-.8248-.883314-1.9974-1.43158-3.2951-1.43158-2.4922 0-4.5102 2.03384-4.5102 4.54257 0 .35444.0385.70057.1154 1.03423-3.75002-.19106-7.07532-1.99923-9.30088-4.750248-.38628.670098-.610352 1.453738-.610352 2.284438 0 1.57557.794552 2.96839 2.005622 3.7811-.73956-.02216-1.43514-.22983-2.045487-.56627v.05677c0 2.20275 1.554737 4.04141 3.620847 4.45671-.37803.1039-.77806.1606-1.19046.1606-.29142 0-.57185-.0304-.85091-.0817.57598 1.8041 2.24207 3.1193 4.2147 3.1581-1.54649 1.2198-3.48888 1.9466-5.60585 1.9466-.365658 0-.721694-.0221-1.07773-.065 2.0015 1.2931 4.37278 2.0421 6.92002 2.0421 8.29878 0 12.84068-6.9267 12.84068-12.9327 0-.19937-.0041-.3932-.0124-.58841.8812-.63549 1.6455-1.43712 2.2503-2.34952z">
+                    </path>
+                </svg>
+            </a>
+            <a class="icon-s lin">
+                <svg viewBox="0 0 20 18" style="fill:currentColor;">
+                    <path clip-rule="evenodd"
+                        d="m2.0769 4.15379c1.14644 0 2.07689-.93045 2.07689-2.07689 0-1.14645-.93045-2.0769-2.07689-2.0769-1.14645 0-2.0769.93045-2.0769 2.0769 0 1.14644.93045 2.07689 2.0769 2.07689zm-2.0769 13.84621v-12.46143h4.15379v12.46143zm6.92371-12.46143h3.83119v1.96336h.0554c.533-.95675 1.8373-1.96336 3.7827-1.96336 4.0444 0 4.7921 2.5172 4.7921 5.79173v6.6697h-3.9946v-5.9123c0-1.4095-.0291-3.22471-2.0769-3.22471-2.0796 0-2.3981 1.53551-2.3981 3.12231v6.0147h-3.99179z"
+                        fill-rule="evenodd"></path>
+                </svg>
+            </a>
+            <a class="icon-s fbook">
+                <svg viewBox="0 0 18 18" style="fill:currentColor;">
+                    <path
+                        d="M17.999 8.999c0-4.97-4.029-8.999-8.999-8.999s-8.999 4.029-8.999 8.999c0 4.492 3.291 8.215 7.593 8.89v-6.289h-2.285v-2.601h2.285v-1.983c0-2.255 1.344-3.501 3.399-3.501 0.985 0 2.015 0.176 2.015 0.176v2.215h-1.135c-1.118 0-1.467 0.694-1.467 1.405v1.688h2.496l-0.399 2.601h-2.097v6.289c4.302-0.675 7.593-4.398 7.593-8.89z">
+                    </path>
+                </svg>
+            </a>
+            <a class="icon-s ytube">
+                <svg viewBox="0 0 18 18"
+                    style="fill:currentColor;">
+                    <path
+                        d="M9 2.070c-8.845 0-9 0.787-9 6.93s0.155 6.93 9 6.93 9-0.787 9-6.93-0.155-6.93-9-6.93zM11.884 9.301l-4.041 1.886c-0.354 0.164-0.644-0.020-0.644-0.41v-3.553c0-0.39 0.29-0.574 0.644-0.41l4.041 1.886c0.354 0.166 0.354 0.436 0 0.601z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <div>Made with ❤️ by <a href="https://www.linkedin.com/in/malay9418/">Malay Patra</a></div>
+            <div style="color: var(--icon); font-size: 14px;">© 2024 Mediox, Inc.</div>
+        </div>
+    </footer>
+
+    <script>
+        const quotes = [
+            {
+                txt: '“Either write something worth reading or do something worth writing”',
+                author: 'Benjamin Franklin'
+            },
+            {
+                txt: '“I feel like I\'m too busy writing history to read it”',
+                author: 'Kanye West'
+            },
+            {
+                txt: '“Writing, to me, is simply thinking through my fingers”',
+                author: 'Isaac Asimov'
+            },
+            {
+                txt: '“Writing is my love. If you love something, you find a lot of time”',
+                author: 'Dr. A. P. J. Abdul Kalam'
+            },
+            {
+                txt: '“I have never started a poem yet whose end I knew. Writing a poem is discovering”',
+                author: 'Robert Frost'
+            },
+            {
+                txt: '“Writing means sharing. It\'s part of the human condition to want to share things - thoughts, ideas, opinions”',
+                author: 'Paulo Coelho'
+            }
+        ]
+        const quoteElement = document.getElementById('quote');
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+        //
+
+
+        //
+        quoteElement.innerText = quote.txt
+        quoteElement.setAttribute('author', quote.author);
+        const editor = new EditorJS({
+            holder: "editorjs",
+            tools: {
+                header: {
+                    class: Header,
+                    config: {
+                        placeholder: "Enter a heading",
+                        levels: [2, 3],
+                        defaultLevel: 2
+                    }
+                }
+            },
+            placeholder: "Start writing...",
+        });
+
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 600,
+        });
+    </script>
+</body>
+
+</html>
